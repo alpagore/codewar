@@ -1,0 +1,99 @@
+import java.util.*;  
+class Substr
+{
+
+String str;
+Character[] chars;
+
+void printSubstrings1()
+{
+	
+    int counter=0;
+    for (int j=1; j<=str.length(); j++)
+    {	 
+	System.out.println(j);	
+    	for(int i=0; i<str.length()-j+1;i++)
+    	{
+        	String sub = str.substring(i,j+i);
+		System.out.println(sub);
+	
+        	counter++;
+    	}
+    
+    }
+    System.out.println(counter);	
+
+}
+
+
+void ascend()
+{ 
+
+ char b[] = new char[str.length()];
+ for(int i=0;i<str.length();i++)
+ b[i] = str.charAt(i);
+ char t;
+ for(int j=0;j<str.length()-1;j++)
+ {
+  for(int k=0;k<str.length()-1-j;k++)
+  {
+   if(b[k]>b[k+1])
+   {
+    t=b[k];
+    b[k]=b[k+1];
+    b[k+1]=t;
+   }
+  }
+  }
+
+
+
+
+
+
+// rebuild the string
+StringBuilder sb = new StringBuilder(str.length());
+for (char c : b) sb.append(c);
+str = sb.toString();
+
+}
+
+
+void inputstr( )
+{ 
+	Scanner scanner = new Scanner(System.in);
+	System.out.println("Please enter string");
+	String str = scanner.nextLine(); // Read the first name 
+	while (!str.matches("[a-zA-Z]+") || str.length()<2 ||str.length()>6 ) 
+	{ // Check if it has anything other than alphabets
+	
+	if(!str.matches("[a-zA-Z]+"))
+    	System.out.println("This is not in letters only");
+
+        if(str.length()<2)
+    	System.out.println("String lenght is shorter than 2");
+
+	if(str.length()>6)
+    	System.out.println("String lenght is longer than 6");
+	
+	System.out.println("Reenter String");
+
+    	str = scanner.nextLine(); // if not, ask the user to enter new string
+	}
+
+}
+
+}
+
+
+class psub
+{
+
+	public static void main(String args[]){
+	Substr s= new Substr();
+	s.inputstr();
+	s.ascend();
+	s.printSubstrings1();
+
+}
+}
